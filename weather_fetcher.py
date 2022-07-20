@@ -1,10 +1,9 @@
 import requests
+import config
 from pprint import pprint
 
 
 print("\nWelcome to the Weather Data Fetcher")
-
-API_KEY = "35b465a58dc0accc9d94066b6f709c34"
 
 # taking required input from user
 print("\nWould you like to enter\n1. Co-ordinates\n2. City name")
@@ -21,9 +20,10 @@ while True:
         # are obtained using Geo-coding API
         def fetch_coords(city):
             BASE_URL = "http://api.openweathermap.org/geo/1.0/direct"
-            response = requests.get(f"{BASE_URL}?appid={API_KEY}&q={city}")
-            data = response.json()
-            return [data[0]['lat'], data[0]['lon']]
+            response = requests.get(f"{BASE_URL}?appid={config.API_KEY}&q={city}")
+            if response.status_code == 200:
+                data = response.json()
+                return [data[0]['lat'], data[0]['lon']]
         latitude, longitude = fetch_coords(city_name)
         break
     else:
@@ -33,11 +33,14 @@ while True:
 
 def fetch_weather(lat, lon):
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
-    response = requests.get(f"{BASE_URL}?appid={API_KEY}&lat={lat}&lon={lon}")
-    data = response.json()
-    return data
-    
+    response = requests.get(f"{BASE_URL}?appid={config.API_KEY}&lat={lat}&lon={lon}")
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        print("An error has occurred.")
 
+    
 weather_data = fetch_weather(latitude, longitude)
 print()
 print(f"City: {weather_data['name']}")
