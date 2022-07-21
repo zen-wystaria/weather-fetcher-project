@@ -1,4 +1,4 @@
-# weather-fetcher-project
+# weather_fetcher_project
 
 This project uses the Geocoder API and Current Weather Data API 
 available at openweathermap.org/api to fetch the weather data of 
