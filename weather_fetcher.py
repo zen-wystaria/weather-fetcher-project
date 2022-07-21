@@ -51,7 +51,7 @@ print(f"Humidity: {weather_data['main']['humidity']}%")
 print(f"Atmospheric Pressure: {weather_data['main']['pressure']} hPa")
 print(f"Temperature: {(weather_data['main']['temp'] - 273.15):.2f}°C")
 
-
+input("Press ENTER to exit.")
 
     
 
