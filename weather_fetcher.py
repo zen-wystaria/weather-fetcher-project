@@ -1,3 +1,7 @@
+# wether_fetcher project using geocoder api and current weather data api
+# 20/7/2022
+
+
 import requests
 import config
 from pprint import pprint
